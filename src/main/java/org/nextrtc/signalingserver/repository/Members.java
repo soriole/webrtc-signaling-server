@@ -40,15 +40,6 @@ public class Members {
     public void register(Member member) {
         members.computeIfAbsent(member.getId(), put -> member);
         eventBus.post(SESSION_OPENED.occurFor(member.getSession()));
-
-        //As soon as a member registers, send memberId to that member
-        InternalMessage.create()//
-                .to(member)//
-                .signal(Signal.MEMBER_ID_ASSIGNED)//
-                .addCustom("type", "MESH")
-                .content(member.getId())//
-                .build()//
-                .send();
     }
 
     public void unregisterBy(Session session, String reason) {
