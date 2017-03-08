@@ -2,10 +2,7 @@ package org.nextrtc.signalingserver.domain.conversation;
 
 import com.google.common.collect.Sets;
 import org.nextrtc.signalingserver.cases.ExchangeSignalsBetweenMembers;
-import org.nextrtc.signalingserver.domain.Conversation;
-import org.nextrtc.signalingserver.domain.InternalMessage;
-import org.nextrtc.signalingserver.domain.Member;
-import org.nextrtc.signalingserver.domain.Signal;
+import org.nextrtc.signalingserver.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,6 +20,11 @@ public class BroadcastConversation extends Conversation {
 
     public BroadcastConversation(String id) {
         super(id);
+    }
+
+    @Override
+    public void call(Member caller, Member callee, String content) {
+        throw new UnsupportedOperationException("Calling is not supported when performing broadcasts!");
     }
 
     @Override

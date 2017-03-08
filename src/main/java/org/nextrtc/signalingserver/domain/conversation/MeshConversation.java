@@ -1,13 +1,11 @@
 package org.nextrtc.signalingserver.domain.conversation;
 
 import com.google.common.collect.Sets;
+import com.google.gson.Gson;
 import org.nextrtc.signalingserver.Names;
 import org.nextrtc.signalingserver.api.NextRTCEventBus;
 import org.nextrtc.signalingserver.cases.ExchangeSignalsBetweenMembers;
-import org.nextrtc.signalingserver.domain.Conversation;
-import org.nextrtc.signalingserver.domain.InternalMessage;
-import org.nextrtc.signalingserver.domain.Member;
-import org.nextrtc.signalingserver.domain.Signal;
+import org.nextrtc.signalingserver.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -20,6 +18,7 @@ import java.util.Set;
 public class MeshConversation extends Conversation {
     @Autowired
     private ExchangeSignalsBetweenMembers exchange;
+    Gson gson = new Gson();
 
     @Autowired
     @Qualifier(Names.EVENT_BUS)
@@ -29,6 +28,17 @@ public class MeshConversation extends Conversation {
 
     public MeshConversation(String id) {
         super(id);
+    }
+
+    @Override
+    public void call(Member caller, Member callee, String content) {
+        InternalMessage.create()//
+                .to(callee)//
+                .signal(Signal.CALLED)//
+                .addCustom("type", "MESH")
+                .content(gson.toJson(content))//
+                .build()//
+                .send();
     }
 
     @Override

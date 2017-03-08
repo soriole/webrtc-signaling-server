@@ -19,6 +19,8 @@ public abstract class Conversation implements NextRTCConversation {
         this.id = id;
     }
 
+    public abstract void call(Member caller, Member callee, String content);
+
     public abstract void join(Member sender);
 
     public void left(Member sender) {

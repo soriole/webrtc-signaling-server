@@ -3,7 +3,9 @@ package org.nextrtc.signalingserver.repository;
 import com.google.common.collect.Maps;
 import org.nextrtc.signalingserver.Names;
 import org.nextrtc.signalingserver.api.NextRTCEventBus;
+import org.nextrtc.signalingserver.domain.InternalMessage;
 import org.nextrtc.signalingserver.domain.Member;
+import org.nextrtc.signalingserver.domain.Signal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,15 @@ public class Members {
     public void register(Member member) {
         members.computeIfAbsent(member.getId(), put -> member);
         eventBus.post(SESSION_OPENED.occurFor(member.getSession()));
+
+        //As soon as a member registers, send memberId to that member
+        InternalMessage.create()//
+                .to(member)//
+                .signal(Signal.MEMBER_ID_ASSIGNED)//
+                .addCustom("type", "MESH")
+                .content(member.getId())//
+                .build()//
+                .send();
     }
 
     public void unregisterBy(Session session, String reason) {
