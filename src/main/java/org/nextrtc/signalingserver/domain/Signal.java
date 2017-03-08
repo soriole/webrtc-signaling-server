@@ -7,7 +7,7 @@ public class Signal {
     /**
      * Signal used by caller to send conversationId to callee
      */
-    public static final Signal CALL = new Signal(Signals.CALL, Signals.CALL);
+    public static final Signal CALL = new Signal(Signals.CALL, Signals.CALL_HANDLER);
     public static final Signal CALLED = new Signal(Signals.CALLED);
     public static final Signal OFFER_REQUEST = new Signal(Signals.OFFER_REQUEST);
     public static final Signal OFFER_RESPONSE = new Signal(Signals.OFFER_RESPONSE, Signals.OFFER_RESPONSE_HANDLER);

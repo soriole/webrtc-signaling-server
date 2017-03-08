@@ -28,7 +28,7 @@ public interface Signals {
     String JOINED = "joined";
     String CREATED = "created";
     String ASK_MEMBER_ID = "askMemberId";
-    String ASK_MEMBER_ID_HANDLER = "nextRTC_askMemberId";
+    String ASK_MEMBER_ID_HANDLER = "nextRTC_ASK";
     String MEMBER_ID_ASSIGNED = "memberIdAssigned";
     String TEXT = "text";
     String TEXT_HANDLER = "nextRTC_TEXT";

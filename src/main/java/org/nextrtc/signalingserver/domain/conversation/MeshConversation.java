@@ -36,7 +36,7 @@ public class MeshConversation extends Conversation {
                 .to(callee)//
                 .signal(Signal.CALLED)//
                 .addCustom("type", "MESH")
-                .content(gson.toJson(content))//
+                .content(content)//
                 .build()//
                 .send();
     }
