@@ -2,6 +2,7 @@ package org.nextrtc.signalingserver.domain.conversation;
 
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
+import org.apache.log4j.Logger;
 import org.nextrtc.signalingserver.Names;
 import org.nextrtc.signalingserver.api.NextRTCEventBus;
 import org.nextrtc.signalingserver.cases.ExchangeSignalsBetweenMembers;
@@ -16,9 +17,11 @@ import java.util.Set;
 @Component
 @Scope("prototype")
 public class MeshConversation extends Conversation {
+    String TAG = this.getClass().getName();
     @Autowired
     private ExchangeSignalsBetweenMembers exchange;
     Gson gson = new Gson();
+    private Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
     @Autowired
     @Qualifier(Names.EVENT_BUS)
@@ -43,6 +46,8 @@ public class MeshConversation extends Conversation {
 
     @Override
     public synchronized void join(Member sender) {
+        logger.info("join: sender: "+sender.getId());
+        System.out.println(TAG+" join: sender: "+sender.getId());
         assignSenderToConversation(sender);
 
         informSenderThatHasBeenJoined(sender);
@@ -53,8 +58,14 @@ public class MeshConversation extends Conversation {
     }
 
     private void informRestAndBeginSignalExchange(Member sender) {
+        System.out.println(TAG+" informRestAndBeginSignalExchange sender: "+sender.getId());
+        logger.info("informRestAndBeginSignalExchange sender: "+sender.getId());
         for (Member to : members) {
+            System.out.println(TAG+" sendJoinedFrom: sender: "+sender.getId()+" to: "+to.getId());
+            logger.info("sendJoinedFrom: sender: "+sender.getId()+" to: "+to.getId());
             sendJoinedFrom(sender, to);
+            System.out.println(TAG+" exchange.begin: to: "+to.getId()+" sender: "+sender.getId());
+            logger.info("exchange.begin: to: "+to.getId()+" sender: "+sender.getId());
             exchange.begin(to, sender);
         }
     }

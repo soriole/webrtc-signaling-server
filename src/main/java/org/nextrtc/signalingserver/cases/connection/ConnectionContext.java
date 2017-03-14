@@ -1,5 +1,6 @@
 package org.nextrtc.signalingserver.cases.connection;
 
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.nextrtc.signalingserver.Names;
 import org.nextrtc.signalingserver.api.NextRTCEventBus;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class ConnectionContext {
+    String TAG = this.getClass().getName();
+    private Logger logger = Logger.getLogger(this.getClass());
 
     @Value(Names.MAX_CONNECTION_SETUP_TIME)
     private int maxConnectionSetupTime;
@@ -34,7 +37,6 @@ public class ConnectionContext {
         this.master = master;
         this.slave = slave;
     }
-
 
     public void process(InternalMessage message) {
         if (is(message, ConnectionState.OFFER_REQUESTED)) {
@@ -84,6 +86,7 @@ public class ConnectionContext {
 
     public void begin() {
         setState(ConnectionState.OFFER_REQUESTED);
+        System.out.println(TAG+". Send offerRequest: slave: "+slave.getId()+" master: "+master.getId());
         InternalMessage.create()//
                 .from(slave)//
                 .to(master)//
