@@ -364,7 +364,7 @@ public class ServerTest extends BaseTest {
         // then
         assertThat(s1Matcher.getMessages().size(), is(0));
         assertThat(s2Matcher.getMessages().size(), is(1));
-        assertMessage(s2Matcher, 0, "s1", "s2", "left", EMPTY);
+        assertMessage(s2Matcher, 0, "s1", "s2", "left", "s1");
     }
 
     @Before

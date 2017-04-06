@@ -326,7 +326,7 @@ public class BroadcastServerTest extends BaseTest {
         // then
         assertThat(s1Matcher.getMessages().size(), is(0));
         assertThat(s2Matcher.getMessages().size(), is(2));
-        assertMessage(s2Matcher, 0, "s1", "s2", "left", EMPTY);
+        assertMessage(s2Matcher, 0, "s1", "s2", "left", "s1");
     }
 
     @Test
@@ -357,7 +357,7 @@ public class BroadcastServerTest extends BaseTest {
         // then
         assertThat(s1Matcher.getMessages().size(), is(0));
         assertThat(s2Matcher.getMessages().size(), is(2));
-        assertMessage(s2Matcher, 0, "s1", "s2", "left", EMPTY);
+        assertMessage(s2Matcher, 0, "s1", "s2", "left", "s1");
         assertMessage(s2Matcher, 1, "s1", "s2", "end", conversationKey);
     }
 

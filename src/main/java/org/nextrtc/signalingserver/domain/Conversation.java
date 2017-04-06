@@ -75,6 +75,7 @@ public abstract class Conversation implements NextRTCConversation {
                 .from(leaving)//
                 .to(recipient)//
                 .signal(Signal.LEFT)//
+                .content(leaving.getId())//
                 .build()//
                 .send();
     }
