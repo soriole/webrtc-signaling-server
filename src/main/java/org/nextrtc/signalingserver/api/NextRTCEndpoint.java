@@ -7,7 +7,9 @@ import org.nextrtc.signalingserver.domain.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.*;
+import javax.websocket.CloseReason;
+import javax.websocket.EndpointConfig;
+import javax.websocket.Session;
 import java.util.Set;
 
 @Component
@@ -24,25 +26,21 @@ public class NextRTCEndpoint {
         endpoints.stream().filter(e -> e.server != null).findFirst().ifPresent(s -> this.setServer(s.server));
     }
 
-    @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
         log.info("Opening: " + session.getId());
         server.register(session);
     }
 
-    @OnMessage
     public void onMessage(Message message, Session session) {
         log.info("Handling message from: " + session.getId());
         server.handle(message, session);
     }
 
-    @OnClose
     public void onClose(Session session, CloseReason reason) {
         log.info("Closing: " + session.getId() + " with reason: " + reason.getReasonPhrase());
         server.unregister(session, reason);
     }
 
-    @OnError
     public void onError(Session session, Throwable exception) {
         log.error("Occured exception for session: " + session.getId() + ", reason: " + exception.getMessage());
         log.debug("Endpoint exception: ", exception);
