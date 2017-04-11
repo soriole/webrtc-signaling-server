@@ -34,7 +34,22 @@ public class CallHandler implements SignalHandler {
             sendCalleeNotPresent(context.getFrom(), callRequest.getCalleeMemberId());
             return;
         }
+
+        Optional<Conversation> existingConversation = conversations.findBy(context.getTo());
+        if (existingConversation.isPresent()) {
+            sendBusySignal(callRequest, context.getFrom());
+        }
+
         conversation.get().call(context.getFrom(), calleeMember.get(), context.getContent());
+    }
+
+    private void sendBusySignal(CallRequest callRequest, Member from) {
+        InternalMessage.create()//
+                .to(from)//
+                .signal(Signal.BUSY)//
+                .content(callRequest.getConvId())
+                .build()
+                .send();
     }
 
     private void sendConversationNotPresent(Member from, String convId) {
