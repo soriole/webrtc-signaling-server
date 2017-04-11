@@ -12,6 +12,8 @@ public class CallRequest {
     private String calleeMemberId;
     @Expose
     private String convId;
+    @Expose
+    private Boolean enableVideo;
 
     public String getCallerMemberId() {
         return callerMemberId;
@@ -35,5 +37,13 @@ public class CallRequest {
 
     public void setConvId(String convId) {
         this.convId = convId;
+    }
+
+    public Boolean getEnableVideo() {
+        return enableVideo;
+    }
+
+    public void setEnableVideo(Boolean enableVideo) {
+        this.enableVideo = enableVideo;
     }
 }
