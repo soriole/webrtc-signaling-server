@@ -39,7 +39,7 @@ public class Signal {
     private static final Signal[] signals = new Signal[]{EMPTY, CALL, CALLED, OFFER_REQUEST,
             OFFER_RESPONSE, ANSWER_REQUEST, ANSWER_RESPONSE, FINALIZE, CANDIDATE, PING, LEFT, REJECT, REJECTED,
             JOIN, CREATE, JOINED, NEW_JOINED, CREATED, ASK_MEMBER_ID, MEMBER_ID_ASSIGNED, TEXT, ERROR, CONVERSATION_NOT_PRESENT,
-            CALLEE_NOT_PRESENT, END
+            CALLEE_NOT_PRESENT, END, BUSY
     };
     private final String signalName;
     private final String signalHandler;
