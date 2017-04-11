@@ -38,6 +38,7 @@ public class CallHandler implements SignalHandler {
         Optional<Conversation> existingConversation = conversations.findBy(context.getTo());
         if (existingConversation.isPresent()) {
             sendBusySignal(callRequest, context.getFrom());
+            return;
         }
 
         conversation.get().call(context.getFrom(), calleeMember.get(), context.getContent());
