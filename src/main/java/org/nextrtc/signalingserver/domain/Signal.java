@@ -15,7 +15,7 @@ public class Signal {
     public static final Signal ANSWER_RESPONSE = new Signal(Signals.ANSWER_RESPONSE, Signals.ANSWER_RESPONSE_HANDLER);
     public static final Signal FINALIZE = new Signal(Signals.FINALIZE);
     public static final Signal CANDIDATE = new Signal(Signals.CANDIDATE, Signals.CANDIDATE_HANDLER);
-    public static final Signal BUSY = new Signal(Signals.BUSY);
+    public static final Signal BUSY = new Signal(Signals.BUSY, Signals.BUSY_HANDLER);
     public static final Signal PING = new Signal(Signals.PING);
     public static final Signal LEFT = new Signal(Signals.LEFT, Signals.LEFT_HANDLER);
     /**

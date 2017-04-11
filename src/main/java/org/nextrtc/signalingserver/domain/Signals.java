@@ -16,6 +16,7 @@ public interface Signals {
     String CANDIDATE = "candidate";
     String CANDIDATE_HANDLER = "nextRTC_CANDIDATE";
     String BUSY = "busy";
+    String BUSY_HANDLER = "nextRTC_BUSY";
     String PING = "ping";
     String LEFT = "left";
     String LEFT_HANDLER = "nextRTC_LEFT";
