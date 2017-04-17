@@ -3,9 +3,7 @@ package org.nextrtc.signalingserver.repository;
 import com.google.common.collect.Maps;
 import org.nextrtc.signalingserver.Names;
 import org.nextrtc.signalingserver.api.NextRTCEventBus;
-import org.nextrtc.signalingserver.domain.InternalMessage;
 import org.nextrtc.signalingserver.domain.Member;
-import org.nextrtc.signalingserver.domain.Signal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -38,7 +36,13 @@ public class Members {
     }
 
     public void register(Member member) {
-        members.computeIfAbsent(member.getId(), put -> member);
+        //members.computeIfAbsent(member.getId(), put -> member);
+
+        if (members.containsKey(member.getId())) {
+            Member oldMember = members.get(member.getId());
+            unregisterBy(oldMember.getSession(), "New registration for same member id");
+        }
+        members.put(member.getId(), member);
         eventBus.post(SESSION_OPENED.occurFor(member.getSession()));
     }
 
