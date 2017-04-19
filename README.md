@@ -1,5 +1,5 @@
-# webrtc-signaling-server
-Provides signaling mechanism to make audio and video calls using WebRTC. [![Build Status](https://travis-ci.org/soriole/webrtc-signaling-server.svg?branch=master)](https://travis-ci.org/soriole/webrtc-signaling-server)
+# webrtc-signaling-server [![Build Status](https://travis-ci.org/soriole/webrtc-signaling-server.svg?branch=master)](https://travis-ci.org/soriole/webrtc-signaling-server)
+Provides signaling mechanism to make audio and video calls using WebRTC.
 
 Cloned from NextRTC Signaling Server: https://github.com/mslosarz/nextrtc-signaling-server
 
