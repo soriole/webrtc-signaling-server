@@ -2,13 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.nextrtc.signalingserver</groupId>
-    <artifactId>nextrtc-signaling-server</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <groupId>com.soriole.web</groupId>
+    <artifactId>webrtc-signaling-server</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>nextrtc-signaling-server</name>
-    <url>http://nextrtc.org</url>
+    <name>webrtc-signaling-server</name>
     <description>Library providing signaling protocol for WebRTC</description>
 
     <licenses>
@@ -25,18 +24,19 @@
             <organization>NextRTC</organization>
             <organizationUrl>http://nextrtc.org</organizationUrl>
         </developer>
+
+        <developer>
+            <name>Robik Singh Shrestha</name>
+            <email>robikshrestha@gmail.com</email>
+            <organization>Soriole</organization>
+            <organizationUrl>http://www.soriole.com</organizationUrl>
+        </developer>
     </developers>
 
     <issueManagement>
-        <url>https://github.com/mslosarz/nextrtc-signaling-server/issues</url>
+        <url>https://github.com/soriole/webrtc-signaling-server/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
-
-    <scm>
-        <connection>scm:git:https://github.com/mslosarz/nextrtc-signaling-server.git</connection>
-        <developerConnection>scm:git:git@github.com:mslosarz/nextrtc-signaling-server.git</developerConnection>
-        <url>https://github.com/mslosarz/nextrtc-signaling-server</url>
-    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
